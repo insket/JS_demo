@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    tr {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <table id="tab" align="center" border="1" width="70%"" style=" border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" id="all">全选&nbsp;
+          <button id="reverse">反选</button>
+        </th>
+        <th>分类</th>
+        <th>描述</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="checkbox" name="ck" onclick="isCheckAll()"></td>
+        <td>1</td>
+        <td>手机</td>
+        <td>数码</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="ck" onclick="isCheckAll()"></td>
+        <td>2</td>
+        <td>电脑</td>
+        <td>办公</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="ck" onclick="isCheckAll()"></td>
+        <td>3</td>
+        <td>电脑</td>
+        <td>办公</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" name="ck" onclick="isCheckAll()"></td>
+        <td>4</td>
+        <td>电脑</td>
+        <td>办公</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+
+    let all = document.querySelector('#all')
+    let reverse = document.querySelector('#reverse')
+    let cks = document.getElementsByName('ck')
+
+    // 全选/全不选
+    all.onclick = function () {
+      // 头部复选框的选中状态
+      let flag = document.querySelector('#all').checked;
+
+      cks.forEach((item, index) => {
+        // 判断
+        if (flag) {
+          // 全选
+          cks[index].checked = true
+        } else {
+          // 全不选
+          cks[index].checked = false
+        }
+      })
+    }
+
+    // 反选
+    reverse.onclick = function () {
+      for (let i = 0; i < cks.length; i++) {
+        cks[i].checked = !cks[i].checked
+      }
+    }
+
+    // 检测全选是否选中
+    function isCheckAll() {
+      let num = 0
+      for (let i = 0; i < cks.length; i++) {
+        if (cks[i].checked === true) {
+          num += 1
+        }
+      }
+      all.checked = num === cks.length
+    }
+  </script>
+</body>
+
+</html>
