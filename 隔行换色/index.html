@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    tr{
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <table id="tab" align="center" border="1" width="70%"" style="border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>分类</th>
+        <th>描述</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>手机</td>
+        <td>数码</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>电脑</td>
+        <td>办公</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>电脑</td>
+        <td>办公</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>电脑</td>
+        <td>办公</td>
+        <td><button>修改</button><button>删除</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script type="text/javascript">
+    // 加载事件
+    window.onload = function() {
+      let tab = document.querySelector('#tab');
+
+      // 设置表头背景颜色
+      tab.children[0].style.backgroundColor = 'skyblue'
+
+      // 设置表体tr的背景颜色
+      // 获取标题对象  得到tr的数量
+      let tbody = tab.tBodies[0].children.length
+
+      for (let i = 0; i < tbody; i++) {
+        // 判断奇偶数行
+        if (i % 2 === 0) {
+          // 偶数
+          tab.tBodies[0].children[i].style.backgroundColor = 'pink'
+        } else {
+          // 奇数
+          tab.tBodies[0].children[i].style.backgroundColor = 'violet'
+        }
+
+      }
+    }
+  </script>
+</body>
+
+</html>
