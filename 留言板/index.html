@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      list-style: none;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .container form {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      /* align-items: center; */
+      flex-direction: column;
+    }
+
+    .con {
+      margin-top: 40px;
+    }
+
+    #send {
+      width: 90px;
+    }
+
+    .con {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    #msgBoard {
+      background-color: rgb(241, 164, 112);
+      border-radius: 10px;
+      padding: 5px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    small {
+      color: #eee;
+    }
+
+    li {
+      border-bottom: 1px solid #ffff96;
+      padding-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 发送留言 -->
+    <form>
+      <div class="user">
+        <label for="username">user:</label> <input type="text" id="username">
+      </div>
+      <div class="con">
+        <label for="content">user:</label> <textarea id="content" cols="30" rows="10"></textarea>
+      </div>
+      <div class="btn">
+        <button id="send">提交</button> &nbsp;&nbsp;&nbsp;
+        <span id="msg" style="color: red;"></span>
+      </div>
+    </form>
+
+    <!-- 留言列表 -->
+    <div id="msgBoard">
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    let send = document.querySelector('#send');
+    let msg = document.querySelector('#msg');
+
+    send.onclick = function (e) {
+      e.preventDefault();
+
+      // 获取user
+      let userVal = document.querySelector('#username').value;
+      if (userVal === null || userVal.trim() === '') {
+        msg.innerHTML = '用户姓名不能为空'
+      }
+
+      // 获取留言内容
+      let content = document.querySelector('#content').value;
+      if (content.trim() === '') {
+        msg.innerHTML = '留言内容不能为空'
+      }
+
+      let li = document.createElement('li');
+      li.innerHTML = '<li><div class="info"><h4>' + userVal + '</h4><small>' + formatDate() + '</small></div><div>' + content + '</div></li>'
+        
+      document.querySelector('#msgBoard').appendChild(li);
+
+    }
+
+    // 格式化时间
+    function formatDate() {
+      let date = new Date()
+      let str = date.getFullYear() + '-' + (parseInt(date.getMonth()) + 1) + '-' + date.getDay()
+      str += ' ' + date.getHours() + ':' + date.getMinutes()
+
+      return str
+    }
+  </script>
+</body>
+
+</html>
