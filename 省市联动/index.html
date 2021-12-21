@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div align='center'>
+    城市
+    <select id="pro">
+      <option value="">请选择</option>
+    </select>
+    <select id="city">
+      <option value="">请选择</option>
+    </select>
+  </div>
+
+  <script type="text/javascript">
+    // 定义省份数据
+    let proList = ['北京', '山西', '山东', '河北', '河南', '江苏']
+    // 定义城市数据
+    var cityList = [
+      ['东城区', '西城区', '朝阳区', '丰台区', '海淀区'],
+      ['太原', '大同', '临汾', '晋中'],
+      ['济南', '青岛', '运城', '烟台', '德州'],
+      ['石家庄', '邢台', '保定'],
+      ['郑州', '南阳', '焦作'],
+      ['南京', '苏州', '无锡', '南通'],
+    ]
+
+    // 填充下拉框数据
+    for (let i = 0; i < proList.length; i++) {
+      // 创建元素节点
+      let opt = document.createElement('option')
+      // 创建文本节点
+      let txt = document.createTextNode(proList[i])
+      // option 中追加文本节点
+      opt.appendChild(txt)
+      // 给下拉框绑定value
+      opt.value = i
+      // 将option元素追加到省份下拉框
+      document.getElementById('pro').appendChild(opt)
+    }
+
+    // 绑定chang事件
+    document.querySelector('#pro').onchange = function () {
+
+      let city = document.querySelector('#city');
+      let pro = document.querySelector('#pro');
+
+      // 清空城市下拉框中的数据 避免change省份时出现bug
+      city.options.length = 0
+
+      // 获取下拉框被选中的值的下标
+      let index = pro.value;
+
+      // 判断是否选中指定省份,index值不能为空
+      if (index === '') {
+        return city.innerHTML = '<option value="">请选择</option>'
+      }
+
+      // 获取对应的城市二级数据
+      let citys = cityList[index]
+
+      for (let i = 0; i < citys.length; i++) {
+        // 创建元素节点
+        let opt = document.createElement('option')
+        // 创建文本节点
+        let txt = document.createTextNode(citys[i])
+        // option 中追加文本节点
+        opt.appendChild(txt)
+        // 将option元素追加到省份下拉框
+        city.appendChild(opt)
+      }
+    };
+
+  </script>
+</body>
+
+</html>
