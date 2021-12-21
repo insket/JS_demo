@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="back"></div>
+  <div class="content">会是谁呢??</div>
+  <div class="box">今天谁来侍寝??</div>
+
+  <script type="text/javascript">
+    let back = document.querySelector('.back');
+    let content = document.querySelector('.content');
+    let box = document.querySelector('.box');
+    // 是否停止
+    let stop = true
+    // 数据
+    let data = ['小鸟游', '稚名真白', 'MiKasar', 'MiSarka',
+      'Asuka', '四谷见子', '千纱', 'Violet', 'Christina', '雪乃']
+    // 背景文字
+    let backText = []
+    //  背景文字颜色
+    let bgColor = ['#FF44FF', '#FFFF37', '#2894FF', '#FF5809', '#FF0000','#6FB7B7']
+
+    // 点击停止/开始
+    box.onclick = function () {
+      stop = !stop
+    }
+
+    function draw() {
+      back.innerHTML = ''
+      if (stop) {
+        box.innerHTML = '今天谁来侍寝??'
+      } else {
+        content.innerHTML = data[parseInt(Math.random() * data.length)]
+        box.innerHTML = '就是你啦'
+      }
+
+      for (let i = 0; i < backText.length; i++) {
+        text = backText[i]
+        let span = document.createElement('span')
+        span.style.position = 'absolute'
+        span.style.left = text.sx + 'px'
+        span.style.top = text.sy + 'px'
+        span.style.color = text.color
+        span.style.fontSize = text.size + 'px'
+        span.style.opacity = 1 - text.age/100
+
+        // 上升速度
+        text.sy -= text.vx
+        // 如果透明度为1 删除元素
+        text.age++
+        if (text.age>100) {
+          backText.splice(i, 1)
+        }
+
+        if (stop) {
+          // 将 背景文字改为 content.innerHTML
+          span.innerHTML = content.innerHTML
+        } else{
+          span.innerHTML = text.str
+        }
+        back.appendChild(span)
+      }
+
+      if (backText.length < 50) {
+        backText.push({
+          str: data[parseInt(Math.random() * data.length)],
+          sx: Math.random() * window.innerWidth,
+          sy: Math.random() * window.innerHeight,
+          color: bgColor[parseInt(Math.random() * bgColor.length)],
+          size: Math.random() * 20 + 20,
+          age: Math.random() * 100,
+          vx: Math.random() * 10
+        })
+      }
+    }
+
+    setInterval(draw, 100);
+
+  </script>
+</body>
+
+</html>
