@@ -55,10 +55,8 @@
 
       // 清空城市下拉框中的数据 避免change省份时出现bug
       city.options.length = 0
-
       // 获取下拉框被选中的值的下标
       let index = pro.value;
-
       // 判断是否选中指定省份,index值不能为空
       if (index === '') {
         return city.innerHTML = '<option value="">请选择</option>'

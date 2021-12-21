@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+      list-style: none;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 30px;
+      letter-spacing: 10px;
+    }
+
+    ul {
+      display: flex;
+    }
+
+    ul li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <p>☆⭐</p>
+  <ul>
+    <li id="1">☆</li>
+    <li id="2">☆</li>
+    <li id="3">☆</li>
+    <li id="4">☆</li>
+    <li id="5">☆</li>
+  </ul>
+
+  <script type="text/javascript">
+    let lis = document.getElementsByTagName('li')
+
+    for (let i = 0; i < lis.length; i++) {
+      // 绑定鼠标悬停事件
+      lis[i].onmouseover = function () {
+        // 得到当前鼠标悬停位置  （id值）
+        let index = this.id
+        // 将左侧的星星变色
+        for (let i = 0; i < index; i++) {
+          lis[i].innerHTML = '⭐'
+        }
+
+        // 右侧的位置星星变白
+        for (let j = lis.length; j > index; j--) {
+          lis[j - 1].innerHTML = '☆'
+        }
+      }
+
+    }
+  </script>
+</body>
+
+</html>
