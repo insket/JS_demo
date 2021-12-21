@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <div class="box">
+    <span>12</span><span>3</span><span>6</span><span>9</span>
+    <div class="clock"></div>
+    <div class="hour"></div>
+    <div class="min"></div>
+    <div class="sec"></div>
+    <div class="dir"></div>
+  </div>
+
+  <script type="text/javascript">
+    let hour = document.querySelector('.hour');
+    let min = document.querySelector('.min');
+    let sec = document.querySelector('.sec');
+    let clock = document.querySelector('.clock');
+
+    // let date = new Date()
+    // console.log(date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+    function time() {
+      let date = new Date()
+      // 秒针角度
+      let sec_deg = 0.006 * (date.getSeconds() * 1000 + date.getMilliseconds())
+      sec.style.transform = 'translate(0, -100%) rotate(' + sec_deg + 'deg)'
+
+      // 分钟角度
+      let min_deg = 6 * date.getMinutes()
+      min.style.transform = 'translate(0, -100%) rotate(' + min_deg + 'deg)'
+
+      // 小时角度
+      let hour_deg = date.getHours() / 12 * 360
+      hour.style.transform = 'translate(0, -100%) rotate(' + hour_deg  + 'deg)'
+
+      clock.innerHTML = ('0' + date.getHours()).slice(-2) + ':' + date.getMinutes() + ':' + date.getSeconds()
+    }
+
+    setInterval(time, 10);
+  </script>
+</body>
+
+</html>
